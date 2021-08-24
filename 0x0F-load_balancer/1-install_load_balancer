@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+#configures a brand new Ubuntu machine to the requirements asked in this task
+sudo apt-get update
+sudo apt-get -y install haproxy
+sudo echo "frontend LOADBALANCER-01
+    mode http
+    bind  *:80
+    default_backend WEBSERVERS-01" >> /etc/haproxy/haproxy.cfg
+sudo echo "backend WEBSERVERS-01
+    balance roundrobin
+    server 1894-web-01 35.227.48.225:80 check
+    server 1894-web-02 34.74.219.148:80 check" >> /etc/haproxy/haproxy.cfg
+sudo service haproxy restart
