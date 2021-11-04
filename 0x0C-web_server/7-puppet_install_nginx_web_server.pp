@@ -40,4 +40,4 @@ file { '/var/www/html/index.nginx-debian.html':
 exec {'restart':
   provider => shell,
   command  => 'sudo service nginx start',
-}
+} 
